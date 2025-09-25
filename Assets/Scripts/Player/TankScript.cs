@@ -9,8 +9,8 @@ public class TankScript : MonoBehaviour
     // public InputAction moveAction;
     // public InputAction fireAction; // Button
     public Transform firePoint;
-    public float moveSpeed = 12f;
-    public float rotateSpeed = 700f;
+    public float moveSpeed = 6f;
+    public float rotateSpeed = 180f;
     public GameObject bulletPrefab;
     // public int playerNumber = 1; // Player1 hoặc Player2
     Rigidbody2D rb;
