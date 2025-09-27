@@ -10,7 +10,7 @@ public class TankScript : MonoBehaviour
     // public InputAction fireAction; // Button
     public Transform firePoint;
     public float moveSpeed = 10f;
-    public float rotateSpeed = 100f;
+    public float rotateSpeed = 300f;
     public GameObject bulletPrefab;
     // public int playerNumber = 1; // Player1 hoặc Player2
     Rigidbody2D rb;
@@ -37,8 +37,15 @@ public class TankScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Clamp moveInput to avoid excessive speed
+        float moveAmount = Mathf.Clamp(moveInput.y, -1f, 1f);
+        float rotateAmount = Mathf.Clamp(moveInput.x, -1f, 1f);
+        // Move forward/backward
         rb.linearVelocity = transform.up * moveInput.y * moveSpeed;
-        rb.MoveRotation(rb.rotation - moveInput.x * rotateSpeed * Time.fixedDeltaTime);
+
+        // Rotate left/right
+        float rotation = rb.rotation - moveInput.x * rotateSpeed * Time.fixedDeltaTime;
+        rb.MoveRotation(rotation);
     }
 
     void Fire()
